@@ -1,5 +1,5 @@
-import 'weather-react-icons/lib/css/weather-icons.css';
-import { WeatherIcon } from 'weather-react-icons';
+import 'weather-react-icons/lib/css/weather-icons.css'
+import { WeatherIcon } from 'weather-react-icons'
 
 import {WeatherDataType} from '../types/WeatherDataType'
 

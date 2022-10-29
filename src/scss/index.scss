@@ -1,6 +1,7 @@
 @import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Teko:wght@400&display=swap');
 @import 'variables';
+@import 'mixins';
 
 html {
   height: 100%;
@@ -17,14 +18,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #333339;
   background-color: $main-bg;
+  text-align: center;
 }
 
 #root{
-  padding-bottom: 5%; // To make the content visually. Looks better to me this way.
+  padding-bottom: 5%; // To make the content visually.
+  max-width: 100%;
 }
 
 h4, .h4 {
   font-weight: 300;
-  font-size: 1.6rem;
-  margin-top: 0;
+  font-size: 1rem;
+  margin: 0 0 1rem 0;
+  @include for-tablet-up {
+    font-size: 1.6rem;
+  }
 }

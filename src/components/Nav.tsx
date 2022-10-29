@@ -1,16 +1,14 @@
-import { useState } from 'react';
-import { CoordinateType } from '../types/CoordinateType'
-import { LocationsDataType } from '../types/LocationDataType';
+import { LocationType } from '../types/LocationType'
 
 type ClickPropType = {
     handleLocation: (index:number, name?: string) => void;
-    locationsData: LocationsDataType[]
+    locations: LocationType[]
 }
 
 
-export default ({handleLocation, locationsData} : ClickPropType) => {
+export default ({handleLocation, locations} : ClickPropType) => {
 
-    const navDOm = locationsData.map((location, i) => {
+    const navDom = locations.map((location, i) => {
         return(
             <li key={i} className='nav-item'>
                 <a 
@@ -25,13 +23,13 @@ export default ({handleLocation, locationsData} : ClickPropType) => {
                 </a>
             </li>
         )
-    })
+    });
 
     return(
         <nav className="navbar">
             <ul className="nav">
-                {navDOm}
+                {navDom}
             </ul>
-      </nav>
-    )
+        </nav>
+    );
 }

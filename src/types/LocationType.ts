@@ -1,6 +1,6 @@
 import { CoordinateType } from './CoordinateType';
 
-export type LocationsDataType = {
+export type LocationType = {
     name: string;
     location: CoordinateType;
     active: string;

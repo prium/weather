@@ -1,17 +1,22 @@
+import { useEffect, useState } from 'react'
+
 import { WeatherDataType } from './types/WeatherDataType'
 import { CoordinateType } from './types/CoordinateType'
+import { LoadingStatusType } from './types/LoadingStatustype'
 
 import Nav from './components/Nav'
 import WeatherToday from './components/WeatherToday'
 import WeatherDay from './components/WeatherDay'
+import getWeatherData from './helpers/getWeatherData'
 
 import './scss/App.scss'
-import { useEffect, useState } from 'react'
-import getWeatherData from './helpers/getWeatherData'
 
 function App() {
 
-  const locationsData = [
+  const [loadingStatus, setLoadingStatus] = useState('LOADING' as LoadingStatusType);
+  const [weatherData, setWeatherData] = useState([] as WeatherDataType[]);
+
+  const [locations, setLocations] = useState([
     {
         name: "Ottawa",
         location: {
@@ -37,68 +42,67 @@ function App() {
         active: '',
     }
 
-  ]
+  ]);
 
-  const [locations, setLocations] = useState(locationsData)
-
-  const toggleActive = (index:number) => {
-      const updatedLocations = locations.map((location, i) => {
-          if(i===index){
-              return {
-                  ...location,
-                  active: 'active'
-              }
-          }
-          return {
-              ...location,
-              active: ''
-          }
-      })
-
-      setLocations(updatedLocations)
-  }
-
-
-
-  let weatherData : WeatherDataType[] = [] 
   
-  useEffect(()=>{
-    getWeatherData(locations[0].location).then(
+  const processWeatherDataFetch = (location:CoordinateType) => {
+    
+    setLoadingStatus('LOADING');
+
+    getWeatherData(location).then(
       data => {
-        setWeatherDataState(data)
+        setWeatherData(data);
+        setLoadingStatus('LOADED');
       }
-    )
-  },[])
+    ).catch(error => {
+      console.log(error.message)
+      setLoadingStatus('ERROR');
+    });
 
-  const [weatherDataState, setWeatherDataState] = useState(weatherData)
-
-  
-  const weatherReportDom = weatherDataState.map(( item, i )=>{
-    //Special representation tor Today's weather  
-    if(i === 0) return <WeatherToday key={i} temp={item.temp} iconID={item.iconID} night={item.night} description={item.description}/>
-
-    // All the upcoming days
-    return <WeatherDay key={i} temp={item.temp} iconID={item.iconID} night={item.night} day={item.day} />
-
-  })
+  }
 
 
   const handleLocation = (index:number) => {
-    // console.log(locations[index].location)
-    getWeatherData(locations[index].location).then(
-      data => setWeatherDataState(data)
-    )
 
+    // Updating the active menu style
+    setLocations(locations.map((location, i) => (
+      {
+        ...location,
+        active: index === i ? 'active' : ''
+      }
+    )));
 
-    toggleActive(index)
-
+    // Getting weather data from API
+    processWeatherDataFetch(locations[index].location);
+  
   }
 
 
+  useEffect(() => processWeatherDataFetch(locations[0].location),[]);
+
+  const weatherReportDom = weatherData.map(( item, i ) => (
+    (i === 0) ? 
+      <WeatherToday key={i} temp={item.temp} iconID={item.iconID} night={item.night} description={item.description}/>
+    : <WeatherDay key={i} temp={item.temp} iconID={item.iconID} night={item.night} day={item.day} />
+
+  ));
+
   return (
     <main className="weather-app">
-      <Nav handleLocation={handleLocation} locationsData={locations}/>
-      <section className="weather-data"> {weatherReportDom} </section>
+      {
+        {
+          'LOADING' : <h4>Loading data...</h4>,
+          'ERROR'   : <h4>Falied to load data.<br/>Please refresh this page to try again.</h4>,
+          'LOADED'  : 
+            <>
+              <Nav handleLocation={handleLocation} locations={locations}/>
+              <section className="weather-data"> 
+                  {weatherReportDom}
+              </section>
+            </>,
+        }[loadingStatus]
+      }
+
     </main>
   );
 }

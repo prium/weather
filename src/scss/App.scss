@@ -1,27 +1,39 @@
 @import 'variables';
+@import 'mixins';
 
 .navbar{
-    text-align: center;
-    margin: 0 0 1.4rem 0;
+    margin: 1.4rem auto;
+    overflow-x: auto;
+    max-width: 100%;
 }
 
 .nav{
     list-style: none;
-    padding: 0;
+    padding:  0;
     margin: 0;
+    width: max-content;
+    @include for-tablet-up {
+        width: auto;
+    }
 }
 
 .nav-item{
     display: inline-block;
-    padding: 1rem 2.8rem;
 }
 
 .nav-link{
     text-transform: uppercase;
     color: #626368;
-    font-size: 1.8rem;
+    font-size: 1rem;
     text-decoration: none;
     display: inline-block;
+    padding: 1rem;
+
+    @include for-tablet-up {
+        font-size: 1.8rem;
+        padding: 1rem 2.8rem;
+    }
+
     &.active{
         color: #5fb0e8;
         font-weight: 700;
@@ -39,9 +51,8 @@
 
 
 .weather-data{
-    max-width: 100%;
+    max-width: 80vw;
     width: 52rem;
-    text-align: center;
 
     display: grid;
     gap: 0.35rem;
@@ -56,11 +67,15 @@
 
 // Changing the styles for the weather icons
 .wi{
-    font-size: 3rem;
     background-image: linear-gradient(45deg, #71cfe1, #5d9ad4);
     background-clip: text;
     color: transparent;
     line-height: initial; //Fixing the icon cutoff
+    
+    font-size: 2rem;
+    @include for-tablet-up{
+        font-size: 3.6rem;
+    }
 }
 
 .weather-day{
@@ -71,15 +86,20 @@
 .weather-day-today{
     grid-column: 1 / 5;
     padding: 3.33rem 0;
-    h4{
-        font-size: 2rem;
+    h4, .h4{
+        font-size: 1.4rem;
+        @include for-tablet-up {
+            font-size: 2rem;
+        }
     }
     .h4{
-        margin-top: 0;
-        font-size: 2rem;
+        margin: 0;
     }
     .wi{
-        font-size: 8rem;
+        font-size: 4rem;
+        @include for-tablet-up{
+            font-size: 8rem;
+        }
     }
 }
 
@@ -97,12 +117,20 @@
 
 .weather-temp{
     font-family: 'Teko', sans-serif;
-    font-size: 2.4rem;
+    font-size: 1.6rem;
     margin-bottom: 0;
+    margin-top: 0.5rem;
+    @include for-tablet-up{
+        font-size: 2.4rem;
+        margin-top: 1rem;
+    }
 }
 .weather-temp-today{
-    font-size: 7rem;
+    font-size: 3.6rem;
     line-height: 1;
     margin: 0;
+    @include for-tablet-up{
+        font-size: 7rem;
+    }
 }
 
