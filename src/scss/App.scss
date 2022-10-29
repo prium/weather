@@ -1,136 +1,134 @@
-@import 'variables';
-@import 'mixins';
+@import "variables";
+@import "mixins";
 
-.navbar{
-    margin: 1.4rem auto;
-    overflow-x: auto;
-    max-width: 100%;
+.navbar {
+  margin: 1.4rem auto;
+  overflow-x: auto;
+  max-width: 100%;
 }
 
-.nav{
-    list-style: none;
-    padding:  0;
-    margin: 0;
-    width: max-content;
-    @include for-tablet-up {
-        width: auto;
-    }
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: max-content;
+  @include for-tablet-up {
+    width: auto;
+  }
 }
 
-.nav-item{
-    display: inline-block;
+.nav-item {
+  display: inline-block;
 }
 
-.nav-link{
-    text-transform: uppercase;
-    color: #626368;
-    font-size: 1rem;
-    text-decoration: none;
-    display: inline-block;
-    padding: 1rem;
+.nav-link {
+  text-transform: uppercase;
+  color: #626368;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1rem;
 
-    @include for-tablet-up {
-        font-size: 1.8rem;
-        padding: 1rem 2.8rem;
-    }
+  @include for-tablet-up {
+    font-size: 1.8rem;
+    padding: 1rem 2.8rem;
+  }
 
-    &.active{
-        color: #5fb0e8;
-        font-weight: 700;
-    }
-    &::before {
-        display: block;
-        content: attr(title);
-        font-weight: 700;
-        height: 0;
-        overflow: hidden;
-        visibility: hidden;
-    }
+  &.active {
+    color: #5fb0e8;
+    font-weight: 700;
+  }
+  &::before {
+    display: block;
+    content: attr(title);
+    font-weight: 700;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+  }
 }
 
+.weather-data {
+  max-width: 80vw;
+  width: 52rem;
 
+  display: grid;
+  gap: 0.35rem;
+  grid-template-columns: repeat(4, 1fr);
 
-.weather-data{
-    max-width: 80vw;
-    width: 52rem;
-
-    display: grid;
-    gap: 0.35rem;
-    grid-template-columns: repeat(4, 1fr);
-
-    margin: 0 auto;
-    background-color: white;
-    padding: 0.35rem;
-    border-radius: 0.8rem;
-    box-shadow: 0 1rem 2rem 0.5rem rgba(#000, 0.08);
+  margin: 0 auto;
+  background-color: white;
+  padding: 0.35rem;
+  border-radius: 0.8rem;
+  box-shadow: 0 1rem 2rem 0.5rem rgba(#000, 0.08);
 }
 
 // Changing the styles for the weather icons
-.wi{
-    background-image: linear-gradient(45deg, #71cfe1, #5d9ad4);
-    background-clip: text;
-    color: transparent;
-    line-height: initial; //Fixing the icon cutoff
-    
-    font-size: 2rem;
-    @include for-tablet-up{
-        font-size: 3.6rem;
-    }
-}
+.wi {
+  background-image: linear-gradient(45deg, #71cfe1, #5d9ad4);
+  background-clip: text;
+  color: transparent;
+  line-height: initial; //Fixing the icon cutoff
 
-.weather-day{
-    background-color: $main-bg;
-    padding: 2rem 0;
-}
-
-.weather-day-today{
-    grid-column: 1 / 5;
-    padding: 3.33rem 0;
-    h4, .h4{
-        font-size: 1.4rem;
-        @include for-tablet-up {
-            font-size: 2rem;
-        }
-    }
-    .h4{
-        margin: 0;
-    }
-    .wi{
-        font-size: 4rem;
-        @include for-tablet-up{
-            font-size: 8rem;
-        }
-    }
-}
-
-.weather-today-display{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.wather-today-reading{
-    text-align: left;
-    padding-left: 1.6rem;
-}
-
-.weather-temp{
-    font-family: 'Teko', sans-serif;
-    font-size: 1.6rem;
-    margin-bottom: 0;
-    margin-top: 0.5rem;
-    @include for-tablet-up{
-        font-size: 2.4rem;
-        margin-top: 1rem;
-    }
-}
-.weather-temp-today{
+  font-size: 2rem;
+  @include for-tablet-up {
     font-size: 3.6rem;
-    line-height: 1;
-    margin: 0;
-    @include for-tablet-up{
-        font-size: 7rem;
-    }
+  }
 }
 
+.weather-day {
+  background-color: $main-bg;
+  padding: 2rem 0;
+}
+
+.weather-day-today {
+  grid-column: 1 / 5;
+  padding: 3.33rem 0;
+  h4,
+  .h4 {
+    font-size: 1.4rem;
+    @include for-tablet-up {
+      font-size: 2rem;
+    }
+  }
+  .h4 {
+    margin: 0;
+  }
+  .wi {
+    font-size: 4rem;
+    @include for-tablet-up {
+      font-size: 8rem;
+    }
+  }
+}
+
+.weather-today-display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.wather-today-reading {
+  text-align: left;
+  padding-left: 1.6rem;
+}
+
+.weather-temp {
+  font-family: "Teko", sans-serif;
+  font-size: 1.6rem;
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+  @include for-tablet-up {
+    font-size: 2.4rem;
+    margin-top: 1rem;
+  }
+}
+.weather-temp-today {
+  font-size: 3.6rem;
+  line-height: 1;
+  margin: 0;
+  @include for-tablet-up {
+    font-size: 7rem;
+  }
+}

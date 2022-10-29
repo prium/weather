@@ -1,7 +1,7 @@
-import { CoordinateType } from './CoordinateType';
+import { CoordinateType } from "./CoordinateType";
 
 export type LocationType = {
-    name: string;
-    location: CoordinateType;
-    active: string;
-}
+  name: string;
+  location: CoordinateType;
+  active: string;
+};
