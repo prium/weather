@@ -35,7 +35,7 @@ function App() {
             lon: 139.839478
         },
         active: '',
-    },
+    }
 
   ]
 
@@ -63,8 +63,11 @@ function App() {
   let weatherData : WeatherDataType[] = [] 
   
   useEffect(()=>{
-    weatherData = getWeatherData(locations[0].location)
-    setWeatherDataState(weatherData)
+    getWeatherData(locations[0].location).then(
+      data => {
+        setWeatherDataState(data)
+      }
+    )
   },[])
 
   const [weatherDataState, setWeatherDataState] = useState(weatherData)
@@ -82,9 +85,10 @@ function App() {
 
   const handleLocation = (index:number) => {
     // console.log(locations[index].location)
-    let wdata = getWeatherData(locations[index].location)
-    
-    setWeatherDataState(wdata)
+    getWeatherData(locations[index].location).then(
+      data => setWeatherDataState(data)
+    )
+
 
     toggleActive(index)
 
