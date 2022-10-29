@@ -1,0 +1,30 @@
+@import-normalize;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&family=Teko:wght@400&display=swap');
+@import 'variables';
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333339;
+  background-color: $main-bg;
+}
+
+#root{
+  padding-bottom: 5%; // To make the content visually. Looks better to me this way.
+}
+
+h4, .h4 {
+  font-weight: 300;
+  font-size: 1.6rem;
+  margin-top: 0;
+}

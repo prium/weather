@@ -1,0 +1,108 @@
+@import 'variables';
+
+.navbar{
+    text-align: center;
+    margin: 0 0 1.4rem 0;
+}
+
+.nav{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item{
+    display: inline-block;
+    padding: 1rem 2.8rem;
+}
+
+.nav-link{
+    text-transform: uppercase;
+    color: #626368;
+    font-size: 1.8rem;
+    text-decoration: none;
+    display: inline-block;
+    &.active{
+        color: #5fb0e8;
+        font-weight: 700;
+    }
+    &::before {
+        display: block;
+        content: attr(title);
+        font-weight: 700;
+        height: 0;
+        overflow: hidden;
+        visibility: hidden;
+    }
+}
+
+
+
+.weather-data{
+    max-width: 100%;
+    width: 52rem;
+    text-align: center;
+
+    display: grid;
+    gap: 0.35rem;
+    grid-template-columns: repeat(4, 1fr);
+
+    margin: 0 auto;
+    background-color: white;
+    padding: 0.35rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 1rem 2rem 0.5rem rgba(#000, 0.08);
+}
+
+// Changing the styles for the weather icons
+.wi{
+    font-size: 3rem;
+    background-image: linear-gradient(45deg, #71cfe1, #5d9ad4);
+    background-clip: text;
+    color: transparent;
+    line-height: initial; //Fixing the icon cutoff
+}
+
+.weather-day{
+    background-color: $main-bg;
+    padding: 2rem 0;
+}
+
+.weather-day-today{
+    grid-column: 1 / 5;
+    padding: 3.33rem 0;
+    h4{
+        font-size: 2rem;
+    }
+    .h4{
+        margin-top: 0;
+        font-size: 2rem;
+    }
+    .wi{
+        font-size: 8rem;
+    }
+}
+
+.weather-today-display{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.wather-today-reading{
+    text-align: left;
+    padding-left: 1.6rem;
+}
+
+.weather-temp{
+    font-family: 'Teko', sans-serif;
+    font-size: 2.4rem;
+    margin-bottom: 0;
+}
+.weather-temp-today{
+    font-size: 7rem;
+    line-height: 1;
+    margin: 0;
+}
+
