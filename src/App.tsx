@@ -7,6 +7,7 @@ import { LoadingStatusType } from "./types/LoadingStatustype";
 import Nav from "./components/Nav";
 import WeatherToday from "./components/WeatherToday";
 import WeatherDay from "./components/WeatherDay";
+
 import getWeatherData from "./helpers/getWeatherData";
 
 import "./scss/App.scss";
@@ -20,7 +21,7 @@ function App() {
   const [locations, setLocations] = useState([
     {
       name: "Ottawa",
-      location: {
+      coordinate: {
         lat: 45.424721,
         lon: -75.695,
       },
@@ -28,7 +29,7 @@ function App() {
     },
     {
       name: "Moscow",
-      location: {
+      coordinate: {
         lat: 55.751244,
         lon: 37.618423,
       },
@@ -36,7 +37,7 @@ function App() {
     },
     {
       name: "Tokyo",
-      location: {
+      coordinate: {
         lat: 35.652832,
         lon: 139.839478,
       },
@@ -44,10 +45,11 @@ function App() {
     },
   ]);
 
-  const processWeatherDataFetch = (location: CoordinateType) => {
+  const populateStates = (coordinate: CoordinateType) => {
     setLoadingStatus("LOADING");
 
-    getWeatherData(location)
+    // Getting weather data from API
+    getWeatherData(coordinate)
       .then((data) => {
         setWeatherData(data);
         setLoadingStatus("LOADED");
@@ -67,11 +69,10 @@ function App() {
       }))
     );
 
-    // Getting weather data from API
-    processWeatherDataFetch(locations[index].location);
+    populateStates(locations[index].coordinate);
   };
 
-  useEffect(() => processWeatherDataFetch(locations[0].location), []);
+  useEffect(() => populateStates(locations[0].coordinate), []);
 
   const weatherReportDom = weatherData.map((item, i) =>
     i === 0 ? (

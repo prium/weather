@@ -17,8 +17,9 @@ export default async (location: CoordinateType) => {
     }
     const data = <OpenweathermapType>(<unknown>await response.json());
 
-    /* This is to select the specific hour for each day that matches with "Today"
-     * from the 3hour forecast API data
+    /*
+     * This is to select the specific hour for each day
+     * that matches with "Today" from the 3hour forecast API data
      */
     const targetHour = data.list[0].dt_txt.toString().split(" ")[1];
 

@@ -11,10 +11,7 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  width: max-content;
-  @include for-tablet-up {
-    width: auto;
-  }
+  min-width: max-content;
 }
 
 .nav-item {
@@ -38,6 +35,7 @@
     color: #5fb0e8;
     font-weight: 700;
   }
+  // So that it does not shake when clicked
   &::before {
     display: block;
     content: attr(title);
@@ -79,6 +77,16 @@
 .weather-day {
   background-color: $main-bg;
   padding: 2rem 0;
+  grid-column: 1/3;
+  &:nth-child(2n + 1):not(:first-child) {
+    grid-column: 3/5;
+    @include for-tablet-up {
+      grid-column: auto;
+    }
+  }
+  @include for-tablet-up {
+    grid-column: auto;
+  }
 }
 
 .weather-day-today {
