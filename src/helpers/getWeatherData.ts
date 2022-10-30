@@ -5,27 +5,25 @@ import { OpenweathermapType } from "../types/OpenweathermapType";
 // Map for Caching API calls
 const weatherDataCacheMap: Map<string, WeatherDataType[]> = new Map();
 
-export default async (location: CoordinateType) => {
-  const locationKey = `${location.lat}${location.lon}`;
+export default async (coordinate: CoordinateType) => {
+  const coordinateKey = `${coordinate.lat}${coordinate.lon}`;
 
-  if (!weatherDataCacheMap.has(locationKey)) {
-    const API_URL = `https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${location.lat}&lon=${location.lon}&appid=99affdde710f1538117fe85eb29424f5`;
-
+  if (!weatherDataCacheMap.has(coordinateKey)) {
+    const API_URL = `https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=${coordinate.lat}&lon=${coordinate.lon}&appid=99affdde710f1538117fe85eb29424f5`;
     const response = await fetch(API_URL);
+
     if (!response.ok) {
-      throw new Error(`Failed to fetch from API! Status: ${response.status}`);
+      throw new Error(`${response.status}`);
     }
+
     const data = <OpenweathermapType>(<unknown>await response.json());
 
-    /*
-     * This is to select the specific hour for each day
-     * that matches with "Today" from the 3hour forecast API data
-     */
+    // For selecting the same hour for all the days
     const targetHour = data.list[0].dt_txt.toString().split(" ")[1];
 
+    // Taking out clean data
     const weatherData: WeatherDataType[] = [];
-
-    data.list.map((item, i: number) => {
+    data.list.map((item) => {
       if (item.dt_txt.toString().split(" ")[1] === targetHour) {
         weatherData.push({
           temp: item.main.temp,
@@ -39,8 +37,8 @@ export default async (location: CoordinateType) => {
       }
     });
 
-    weatherDataCacheMap.set(locationKey, weatherData);
+    weatherDataCacheMap.set(coordinateKey, weatherData);
   } //endif
 
-  return <WeatherDataType[]>weatherDataCacheMap.get(locationKey);
+  return <WeatherDataType[]>weatherDataCacheMap.get(coordinateKey);
 };

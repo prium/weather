@@ -3,7 +3,11 @@ import { WeatherIcon } from "weather-react-icons";
 
 import { WeatherDataType } from "../types/WeatherDataType";
 
-export default ({ temp, iconID, night, description }: WeatherDataType) => {
+export default ({
+  data: { temp, iconID, night, description },
+}: {
+  data: WeatherDataType;
+}) => {
   return (
     <div className="weather-day weather-day-today">
       <h4>Today</h4>

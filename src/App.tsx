@@ -5,12 +5,12 @@ import { CoordinateType } from "./types/CoordinateType";
 import { LoadingStatusType } from "./types/LoadingStatustype";
 
 import Nav from "./components/Nav";
-import WeatherToday from "./components/WeatherToday";
-import WeatherDay from "./components/WeatherDay";
+import WeatherReport from "./components/WeatherReport";
 
 import getWeatherData from "./helpers/getWeatherData";
 
 import "./scss/App.scss";
+
 
 function App() {
   const [loadingStatus, setLoadingStatus] = useState(
@@ -74,26 +74,6 @@ function App() {
 
   useEffect(() => populateStates(locations[0].coordinate), []);
 
-  const weatherReportDom = weatherData.map((item, i) =>
-    i === 0 ? (
-      <WeatherToday
-        key={i}
-        temp={item.temp}
-        iconID={item.iconID}
-        night={item.night}
-        description={item.description}
-      />
-    ) : (
-      <WeatherDay
-        key={i}
-        temp={item.temp}
-        iconID={item.iconID}
-        night={item.night}
-        day={item.day}
-      />
-    )
-  );
-
   return (
     <main className="weather-app">
       {
@@ -109,7 +89,7 @@ function App() {
           LOADED: (
             <>
               <Nav handleLocation={handleLocation} locations={locations} />
-              <section className="weather-data">{weatherReportDom}</section>
+              <WeatherReport data={weatherData} />
             </>
           ),
         }[loadingStatus]
