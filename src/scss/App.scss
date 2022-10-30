@@ -67,7 +67,7 @@
   background-clip: text;
   color: transparent;
   line-height: initial; //Fixing the icon cutoff
-
+  
   font-size: 2rem;
   @include for-tablet-up {
     font-size: 3.6rem;
