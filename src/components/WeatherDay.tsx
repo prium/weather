@@ -1,7 +1,7 @@
+import { WeatherDataType } from "../types/WeatherDataType";
+
 import "weather-react-icons/lib/css/weather-icons.css";
 import { WeatherIcon } from "weather-react-icons";
-
-import { WeatherDataType } from "../types/WeatherDataType";
 
 export default ({
   data: { temp, iconID, day, night },

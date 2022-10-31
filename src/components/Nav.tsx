@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import {locations} from "../data/locations";
+import { locations } from "../data/locations";
 
 export default () => {
   const navDom = Array.from(locations.keys()).map((key) => {

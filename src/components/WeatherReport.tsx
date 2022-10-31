@@ -1,4 +1,5 @@
 import { WeatherDataType } from "../types/WeatherDataType";
+
 import WeatherDay from "./WeatherDay";
 import WeatherToday from "./WeatherToday";
 

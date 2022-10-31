@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./scss/index.scss";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {HashRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom"; //Using hash router for gh-pages deployment.
+
+import App from "./App";
+import "./scss/index.scss";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <HashRouter> {/*Using hash router for gh-pages deployment. */}
+    <HashRouter>
       <App />
     </HashRouter>
   </React.StrictMode>
