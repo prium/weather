@@ -10,7 +10,7 @@ import WeatherReport from "../components/WeatherReport";
 
 export default () => {
   const locationKey = useLocation().pathname.replace("/", "");
-  const coordinate = locations.get(locationKey as string) as CoordinateType;
+  const coordinate = locations.get(locationKey) as CoordinateType;
 
   const { status, data, error } = useWeatherAPI(coordinate) as {
     status: string;
