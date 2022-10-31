@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <HashRouter> {/*Using has router for gh-pages deployment. */}
+    <HashRouter> {/*Using hash router for gh-pages deployment. */}
       <App />
     </HashRouter>
   </React.StrictMode>
