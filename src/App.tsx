@@ -17,7 +17,7 @@ function App() {
           element={<Navigate to={routePaths[0]} replace={true} />}
         />
         {routePaths.map((key) => {
-          return <Route key={key} path={key} element={<Weather />} />;
+          return <Route key={key} path={`/${key}`} element={<Weather />} />;
         })}
         <Route path="*" element={<h1>404</h1>} />
       </Routes>
