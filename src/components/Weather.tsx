@@ -18,8 +18,6 @@ export default () => {
     error: Error;
   };
 
-  console.log(data);
-
   return (
     <main className="weather-app">
       {status === "loading" ? (
@@ -34,7 +32,7 @@ export default () => {
       ) : (
         <>
           <Nav />
-          {<WeatherReport data={data} />}
+          <WeatherReport data={data} />
         </>
       )}
     </main>
